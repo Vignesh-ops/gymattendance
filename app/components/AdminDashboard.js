@@ -75,7 +75,7 @@ const AdminDashboard = ({ user }) => {
     <div className="min-h-screen py-8 px-4">
       <div className="container mx-auto max-w-7xl">
         <h1 className="text-4xl font-bold text-white mb-8 flex items-center gap-3">
-          <Users className="text-orange-500" />
+          <Users className="text-green-500" />
           Admin Dashboard
         </h1>
         
@@ -95,10 +95,10 @@ const AdminDashboard = ({ user }) => {
             </div>
             <p className="text-4xl font-bold text-white">{stats.todayVisits || 0}</p>
           </div>
-          <div className="bg-gradient-to-br from-orange-500/20 to-orange-600/20 rounded-2xl p-6 border border-orange-500/30">
+          <div className="bg-gradient-to-br from-green-500/20 to-green-600/20 rounded-2xl p-6 border border-green-500/30">
             <div className="flex items-center justify-between mb-2">
-              <h3 className="text-orange-300 font-semibold">Active Now</h3>
-              <Clock className="text-orange-400" size={24} />
+              <h3 className="text-green-300 font-semibold">Active Now</h3>
+              <Clock className="text-green-400" size={24} />
             </div>
             <p className="text-4xl font-bold text-white">{stats.activeNow || 0}</p>
           </div>
@@ -120,7 +120,7 @@ const AdminDashboard = ({ user }) => {
               onClick={() => setActiveTab('attendance')}
               className={`flex-1 py-4 px-6 font-semibold transition-all ${
                 activeTab === 'attendance'
-                  ? 'bg-orange-500 text-white'
+                  ? 'bg-green-500 text-white'
                   : 'text-gray-400 hover:text-white hover:bg-gray-700/50'
               }`}
             >
@@ -130,7 +130,7 @@ const AdminDashboard = ({ user }) => {
               onClick={() => setActiveTab('members')}
               className={`flex-1 py-4 px-6 font-semibold transition-all ${
                 activeTab === 'members'
-                  ? 'bg-orange-500 text-white'
+                  ? 'bg-green-500 text-white'
                   : 'text-gray-400 hover:text-white hover:bg-gray-700/50'
               }`}
             >
@@ -147,7 +147,7 @@ const AdminDashboard = ({ user }) => {
                     <label className="block text-gray-300 mb-2 font-semibold">Date</label>
                     <input 
                       type="date"
-                      className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-orange-500"
+                      className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-green-500"
                       value={filters.date}
                       onChange={(e) => setFilters({...filters, date: e.target.value})}
                     />
@@ -156,7 +156,7 @@ const AdminDashboard = ({ user }) => {
                     <label className="block text-gray-300 mb-2 font-semibold">Search Member</label>
                     <input 
                       type="text"
-                      className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-orange-500"
+                      className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-green-500"
                       placeholder="Phone or name"
                       value={filters.member}
                       onChange={(e) => setFilters({...filters, member: e.target.value})}
@@ -175,7 +175,7 @@ const AdminDashboard = ({ user }) => {
                 {/* Attendance Table */}
                 {loading ? (
                   <div className="text-center text-gray-400 py-12">
-                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-orange-500 mx-auto"></div>
+                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-500 mx-auto"></div>
                     <p className="mt-4">Loading attendance data...</p>
                   </div>
                 ) : attendance.length === 0 ? (
@@ -262,15 +262,15 @@ const AdminDashboard = ({ user }) => {
                 <h3 className="text-xl font-bold text-white mb-4">All Registered Members</h3>
                 {loading ? (
                   <div className="text-center text-gray-400 py-12">
-                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-orange-500 mx-auto"></div>
+                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-500 mx-auto"></div>
                     <p className="mt-4">Loading members...</p>
                   </div>
                 ) : (
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                     {members.map((member) => (
-                      <div key={member._id} className="bg-gray-700/30 rounded-xl p-4 border border-gray-600 hover:border-orange-500 transition-all">
+                      <div key={member._id} className="bg-gray-700/30 rounded-xl p-4 border border-gray-600 hover:border-green-500 transition-all">
                         <div className="flex items-center gap-3 mb-3">
-                          <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-500 rounded-full flex items-center justify-center text-white font-bold">
+                          <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-red-500 rounded-full flex items-center justify-center text-white font-bold">
                             {member.name.charAt(0).toUpperCase()}
                           </div>
                           <div>

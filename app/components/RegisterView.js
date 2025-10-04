@@ -46,7 +46,7 @@ const RegisterView = ({ onLogin, onNavigate, qrScanPending }) => {
             <label className="block text-gray-300 mb-2 font-semibold">Full Name *</label>
             <input 
               type="text"
-              className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-500/50"
+              className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-green-500 focus:ring-2 focus:ring-green-500/50"
               placeholder="Enter your full name"
               value={formData.name}
               onChange={(e) => setFormData({...formData, name: e.target.value})}
@@ -57,7 +57,7 @@ const RegisterView = ({ onLogin, onNavigate, qrScanPending }) => {
             <label className="block text-gray-300 mb-2 font-semibold">Phone Number *</label>
             <input 
               type="tel"
-              className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-500/50"
+              className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-green-500 focus:ring-2 focus:ring-green-500/50"
               placeholder="Enter your phone number"
               value={formData.phone}
               onChange={(e) => setFormData({...formData, phone: e.target.value})}
@@ -65,10 +65,10 @@ const RegisterView = ({ onLogin, onNavigate, qrScanPending }) => {
             />
           </div>
           <div>
-            <label className="block text-gray-300 mb-2 font-semibold">Email (Optional)</label>
+            <label className="block text-gray-300 mb-2 font-semibold">Email</label>
             <input 
               type="email"
-              className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-500/50"
+              className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-green-500 focus:ring-2 focus:ring-green-500/50"
               placeholder="Enter your email"
               value={formData.email}
               onChange={(e) => setFormData({...formData, email: e.target.value})}
@@ -78,7 +78,7 @@ const RegisterView = ({ onLogin, onNavigate, qrScanPending }) => {
             <label className="block text-gray-300 mb-2 font-semibold">Password *</label>
             <input 
               type="password"
-              className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-500/50"
+              className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-green-500 focus:ring-2 focus:ring-green-500/50"
               placeholder="Create a password (min 6 characters)"
               value={formData.password}
               onChange={(e) => setFormData({...formData, password: e.target.value})}
@@ -89,7 +89,7 @@ const RegisterView = ({ onLogin, onNavigate, qrScanPending }) => {
           <button 
             type="submit"
             disabled={loading}
-            className="w-full bg-gradient-to-r from-orange-500 to-red-500 text-white py-3 rounded-lg font-semibold hover:from-orange-600 hover:to-red-600 transition-all disabled:opacity-50 transform hover:scale-105"
+            className="w-full bg-gradient-to-r from-green-500 to-red-500 text-white py-3 rounded-lg font-semibold hover:from-green-600 hover:to-red-600 transition-all disabled:opacity-50 transform hover:scale-105"
           >
             {loading ? 'Registering...' : 'Register & Login'}
           </button>
@@ -98,7 +98,7 @@ const RegisterView = ({ onLogin, onNavigate, qrScanPending }) => {
         <div className="mt-6 text-center">
           <button 
             onClick={() => onNavigate('member-login')}
-            className="text-orange-500 hover:text-orange-400 font-semibold"
+            className="text-green-500 hover:text-green-400 font-semibold"
           >
             Already have an account? Login here
           </button>

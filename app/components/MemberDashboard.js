@@ -92,7 +92,7 @@ const MemberDashboard = ({ user, onScan, loading }) => {
             {/* Profile Card */}
             <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-6 border border-gray-700">
               <div className="text-center">
-                <div className="w-24 h-24 bg-gradient-to-br from-orange-500 to-red-500 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl">
+                <div className="w-24 h-24 bg-gradient-to-br from-green-500 to-red-500 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl">
                   {user.name.charAt(0).toUpperCase()}
                 </div>
                 <h2 className="text-2xl font-bold text-white">{user.name}</h2>
@@ -118,7 +118,7 @@ const MemberDashboard = ({ user, onScan, loading }) => {
             {/* QR Scan Button */}
             <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-6 border border-gray-700">
               <h3 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
-                <QrCode className="text-orange-500" />
+                <QrCode className="text-green-500" />
                 Quick Actions
               </h3>
               
@@ -141,7 +141,7 @@ const MemberDashboard = ({ user, onScan, loading }) => {
                 <button 
                   onClick={onScan}
                   disabled={loading}
-                  className="w-full bg-gradient-to-r from-orange-500 to-red-500 text-white py-4 rounded-lg font-semibold hover:from-orange-600 hover:to-red-600 transition-all disabled:opacity-50 flex items-center justify-center gap-2"
+                  className="w-full bg-gradient-to-r from-green-500 to-red-500 text-white py-4 rounded-lg font-semibold hover:from-green-600 hover:to-red-600 transition-all disabled:opacity-50 flex items-center justify-center gap-2"
                 >
                   <QrCode size={20} />
                   {loading ? 'Processing...' : 'Scan QR to Check In'}
@@ -164,13 +164,13 @@ const MemberDashboard = ({ user, onScan, loading }) => {
           <div className="lg:col-span-2">
             <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-6 border border-gray-700">
               <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
-                <Calendar className="text-orange-500" />
+                <Calendar className="text-green-500" />
                 Attendance History
               </h2>
               
               {dataLoading ? (
                 <div className="text-center text-gray-400 py-12">
-                  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-orange-500 mx-auto"></div>
+                  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-500 mx-auto"></div>
                   <p className="mt-4">Loading your attendance...</p>
                 </div>
               ) : attendance.length === 0 ? (

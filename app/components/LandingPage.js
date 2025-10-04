@@ -47,7 +47,7 @@ const LandingPage = ({ onNavigate }) => {
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-60"></div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-orange-400 via-red-500 to-orange-600 bg-clip-text text-transparent animate-fade-in">
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-green-400 via-red-500 to-green-600 bg-clip-text text-transparent animate-fade-in">
               Muscle Art Fitness
             </h1>
             <p className="text-xl md:text-2xl mb-8 text-gray-300">
@@ -56,7 +56,7 @@ const LandingPage = ({ onNavigate }) => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button 
                 onClick={() => onNavigate('member-register')}
-                className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:from-orange-600 hover:to-red-600 transition-all transform hover:scale-105 shadow-xl"
+                className="bg-gradient-to-r from-green-500 to-red-500 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:from-green-600 hover:to-red-600 transition-all transform hover:scale-105 shadow-xl"
               >
                 Join Now - Free Registration
               </button>
@@ -90,7 +90,7 @@ const LandingPage = ({ onNavigate }) => {
                 <button
                   key={idx}
                   className={`w-3 h-3 rounded-full transition-all ${
-                    idx === currentImage ? 'bg-orange-500 w-8' : 'bg-white/50'
+                    idx === currentImage ? 'bg-green-500 w-8' : 'bg-white/50'
                   }`}
                   onClick={() => setCurrentImage(idx)}
                 />
@@ -125,8 +125,8 @@ const LandingPage = ({ onNavigate }) => {
                 description: 'Track attendance patterns, workout consistency, and improve your fitness journey.'
               }
             ].map((feature, idx) => (
-              <div key={idx} className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-8 text-center hover:transform hover:scale-105 transition-all duration-300 border border-gray-700 hover:border-orange-500">
-                <div className="text-orange-500 flex justify-center mb-4">
+              <div key={idx} className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-8 text-center hover:transform hover:scale-105 transition-all duration-300 border border-gray-700 hover:border-green-500">
+                <div className="text-green-500 flex justify-center mb-4">
                   {feature.icon}
                 </div>
                 <h3 className="text-xl font-bold mb-4 text-white">{feature.title}</h3>
@@ -144,7 +144,7 @@ const LandingPage = ({ onNavigate }) => {
           <p className="text-gray-400 text-center mb-12">Real experiences from real people</p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {testimonials.map((testimonial, idx) => (
-              <div key={idx} className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-8 border border-gray-700 hover:border-orange-500 transition-all">
+              <div key={idx} className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-8 border border-gray-700 hover:border-green-500 transition-all">
                 <div className="flex items-center gap-4 mb-4">
                   {/* Replace img with Next.js Image */}
                   <Image 
@@ -152,7 +152,7 @@ const LandingPage = ({ onNavigate }) => {
                     alt={testimonial.name}
                     width={64}
                     height={64}
-                    className="rounded-full object-cover border-2 border-orange-500"
+                    className="rounded-full object-cover border-2 border-green-500"
                   />
                   <div>
                     <h4 className="text-white font-bold">{testimonial.name}</h4>
@@ -168,13 +168,13 @@ const LandingPage = ({ onNavigate }) => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-orange-500 to-red-500">
+      <section className="py-20 bg-gradient-to-r from-green-500 to-red-500">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-4xl font-bold text-white mb-4">Ready to Start Your Fitness Journey?</h2>
           <p className="text-white/90 text-xl mb-8">Join hundreds of members using our smart attendance system</p>
           <button 
             onClick={() => onNavigate('member-register')}
-            className="bg-white text-orange-500 px-10 py-4 rounded-lg text-lg font-bold hover:bg-gray-100 transition-all transform hover:scale-105 shadow-xl"
+            className="bg-white text-green-500 px-10 py-4 rounded-lg text-lg font-bold hover:bg-gray-100 transition-all transform hover:scale-105 shadow-xl"
           >
             Get Started - It&apos;s Free!
           </button>

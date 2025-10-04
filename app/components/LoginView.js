@@ -36,7 +36,7 @@ const LoginView = ({ onLogin, type, onNavigate, qrScanPending }) => {
     <div className="min-h-screen flex items-center justify-center py-12 px-4">
       <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-8 w-full max-w-md border border-gray-700 shadow-2xl">
         {qrScanPending && (
-          <div className="bg-orange-500/20 border border-orange-500 text-orange-200 p-4 rounded-lg mb-6">
+          <div className="bg-green-500/20 border border-green-500 text-green-200 p-4 rounded-lg mb-6">
             <div className="flex items-center gap-2">
               <QrCode size={20} />
               <span className="font-semibold">QR Scan Pending</span>
@@ -62,7 +62,7 @@ const LoginView = ({ onLogin, type, onNavigate, qrScanPending }) => {
             </label>
             <input 
               type="tel"
-              className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-500/50 transition-all"
+              className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-green-500 focus:ring-2 focus:ring-green-500/50 transition-all"
               placeholder="Enter your 10-digit phone number"
               value={credentials.phone}
               onChange={(e) => setCredentials({...credentials, phone: e.target.value})}
@@ -78,7 +78,7 @@ const LoginView = ({ onLogin, type, onNavigate, qrScanPending }) => {
             </label>
             <input 
               type="password"
-              className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-500/50 transition-all"
+              className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-green-500 focus:ring-2 focus:ring-green-500/50 transition-all"
               placeholder="Enter your password"
               value={credentials.password}
               onChange={(e) => setCredentials({...credentials, password: e.target.value})}
@@ -90,7 +90,7 @@ const LoginView = ({ onLogin, type, onNavigate, qrScanPending }) => {
           <button 
             type="submit"
             disabled={loading}
-            className="w-full bg-gradient-to-r from-orange-500 to-red-500 text-white py-3 rounded-lg font-semibold hover:from-orange-600 hover:to-red-600 transition-all disabled:opacity-50 transform hover:scale-105"
+            className="w-full bg-gradient-to-r from-green-500 to-red-500 text-white py-3 rounded-lg font-semibold hover:from-green-600 hover:to-red-600 transition-all disabled:opacity-50 transform hover:scale-105"
           >
             {loading ? 'Logging in...' : 'Login'}
           </button>
@@ -100,7 +100,7 @@ const LoginView = ({ onLogin, type, onNavigate, qrScanPending }) => {
           <div className="mt-6 text-center">
             <button 
               onClick={() => onNavigate('member-register')}
-              className="text-orange-500 hover:text-orange-400 font-semibold"
+              className="text-green-500 hover:text-green-400 font-semibold"
             >
               Don&apos;t have an account? Register here
             </button>

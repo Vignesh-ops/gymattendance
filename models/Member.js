@@ -10,7 +10,7 @@ const memberSchema = new mongoose.Schema({
   phone: { 
     type: String, 
     required: [true, 'Phone number is required'],
-    unique: true,
+    unique: true, // This creates an index automatically
     trim: true,
     match: [/^\d{10}$/, 'Phone number must be 10 digits']
   },
@@ -42,7 +42,8 @@ const memberSchema = new mongoose.Schema({
   timestamps: true
 });
 
-memberSchema.index({ phone: 1 });
+// Remove these duplicate index definitions since 'unique: true' already creates them
+// memberSchema.index({ phone: 1 });
 memberSchema.index({ role: 1 });
 
 export default mongoose.models.Member || mongoose.model('Member', memberSchema);

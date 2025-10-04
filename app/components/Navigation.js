@@ -4,16 +4,23 @@ import { LogOut, Menu, X, Award } from 'lucide-react';
 
 const Navigation = ({ user, onLogout, onNavigate }) => {
   const [mobileMenu, setMobileMenu] = useState(false);
-
+  const handleNavigation = (view) => {
+    // Clear URL parameters when navigating
+    if (window.location.search) {
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }
+    onNavigate(view);
+    setMobileMenu(false);
+  };
   return (
     <nav className="bg-black/50 backdrop-blur-lg text-white sticky top-0 z-50 border-b border-gray-800">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-16">
           <div 
-            className="text-2xl font-bold bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent cursor-pointer flex items-center gap-2"
+            className="text-2xl font-bold bg-gradient-to-r from-green-500 to-red-500 bg-clip-text text-transparent cursor-pointer flex items-center gap-2"
             onClick={() => onNavigate('landing')}
           >
-            <Award className="text-orange-500" size={28} />
+            <Award className="text-green-500" size={28} />
             Muscle Art Fitness
           </div>
           
@@ -22,7 +29,7 @@ const Navigation = ({ user, onLogout, onNavigate }) => {
               <>
                 <button 
                   onClick={() => onNavigate('member-login')}
-                  className="px-6 py-2 bg-orange-500 rounded-lg hover:bg-orange-600 transition-all font-semibold"
+                  className="px-6 py-2 bg-green-500 rounded-lg hover:bg-green-600 transition-all font-semibold"
                 >
                   Member Login
                 </button>
@@ -61,7 +68,7 @@ const Navigation = ({ user, onLogout, onNavigate }) => {
               <div className="flex flex-col gap-3">
                 <button 
                   onClick={() => { onNavigate('member-login'); setMobileMenu(false); }}
-                  className="px-6 py-3 bg-orange-500 rounded-lg hover:bg-orange-600 transition-all font-semibold"
+                  className="px-6 py-3 bg-green-500 rounded-lg hover:bg-green-600 transition-all font-semibold"
                 >
                   Member Login
                 </button>

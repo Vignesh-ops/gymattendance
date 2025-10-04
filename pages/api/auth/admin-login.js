@@ -31,6 +31,8 @@ export default async function handler(req, res) {
     await mongooseConnect();
 
     const { phone, password } = req.body;
+    console.log(phone,password)
+
     // Find admin member
     const member = await Member.findOne({ phone, role: 'admin' });
     console.log(member)
