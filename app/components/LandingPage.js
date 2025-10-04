@@ -1,6 +1,7 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { QrCode, Clock, TrendingUp, Award } from 'lucide-react';
+import Image from 'next/image'; // Import Next.js Image
 
 const LandingPage = ({ onNavigate }) => {
   const [currentImage, setCurrentImage] = useState(0);
@@ -10,12 +11,13 @@ const LandingPage = ({ onNavigate }) => {
     "https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=800&q=80"
   ];
 
+  // Fix useEffect dependency
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImage((prev) => (prev + 1) % images.length);
     }, 5000);
     return () => clearInterval(interval);
-  }, []);
+  }, [images.length]); // Add images.length to dependencies
 
   const testimonials = [
     {
@@ -74,10 +76,13 @@ const LandingPage = ({ onNavigate }) => {
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-bold text-white text-center mb-12">World-Class Facilities</h2>
           <div className="relative h-96 max-w-5xl mx-auto rounded-2xl overflow-hidden shadow-2xl">
-            <img 
+            {/* Replace img with Next.js Image */}
+            <Image 
               src={images[currentImage]} 
               alt="Gym Facility"
-              className="w-full h-full object-cover transition-opacity duration-1000"
+              fill
+              className="object-cover transition-opacity duration-1000"
+              priority
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
             <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex gap-2">
@@ -141,17 +146,21 @@ const LandingPage = ({ onNavigate }) => {
             {testimonials.map((testimonial, idx) => (
               <div key={idx} className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-8 border border-gray-700 hover:border-orange-500 transition-all">
                 <div className="flex items-center gap-4 mb-4">
-                  <img 
+                  {/* Replace img with Next.js Image */}
+                  <Image 
                     src={testimonial.image} 
                     alt={testimonial.name}
-                    className="w-16 h-16 rounded-full object-cover border-2 border-orange-500"
+                    width={64}
+                    height={64}
+                    className="rounded-full object-cover border-2 border-orange-500"
                   />
                   <div>
                     <h4 className="text-white font-bold">{testimonial.name}</h4>
                     <p className="text-gray-400 text-sm">{testimonial.role}</p>
                   </div>
                 </div>
-                <p className="text-gray-300 italic">"{testimonial.text}"</p>
+                {/* Fix unescaped entities */}
+                <p className="text-gray-300 italic">&ldquo;{testimonial.text}&rdquo;</p>
               </div>
             ))}
           </div>
@@ -167,7 +176,7 @@ const LandingPage = ({ onNavigate }) => {
             onClick={() => onNavigate('member-register')}
             className="bg-white text-orange-500 px-10 py-4 rounded-lg text-lg font-bold hover:bg-gray-100 transition-all transform hover:scale-105 shadow-xl"
           >
-            Get Started - It's Free!
+            Get Started - It&apos;s Free!
           </button>
         </div>
       </section>

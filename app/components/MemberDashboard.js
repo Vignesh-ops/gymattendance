@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react'; // Add useCallback
 import { QrCode, Calendar } from 'lucide-react';
 
 const MemberDashboard = ({ user, onScan, loading }) => {
@@ -13,11 +13,8 @@ const MemberDashboard = ({ user, onScan, loading }) => {
   const [dataLoading, setDataLoading] = useState(true);
   const [activeSession, setActiveSession] = useState(null);
 
-  useEffect(() => {
-    fetchAttendance();
-  }, []);
-
-  const fetchAttendance = async () => {
+  // Move fetchAttendance inside useCallback to fix dependency
+  const fetchAttendance = useCallback(async () => {
     try {
       const response = await fetch('/api/attendance/my-attendance', {
         headers: { 'Authorization': `Bearer ${localStorage.getItem('gymToken')}` }
@@ -38,8 +35,13 @@ const MemberDashboard = ({ user, onScan, loading }) => {
       console.error('Failed to fetch attendance:', error);
     }
     setDataLoading(false);
-  };
+  }, []); // Add dependencies if needed
 
+  useEffect(() => {
+    fetchAttendance();
+  }, [fetchAttendance]); // Now fetchAttendance is stable
+
+  // Rest of the component remains the same...
   const calculateStats = (records) => {
     const total = records.length;
     const today = new Date().toLocaleDateString('en-CA', { timeZone: 'Asia/Kolkata' });

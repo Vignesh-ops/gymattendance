@@ -102,7 +102,7 @@ const LoginView = ({ onLogin, type, onNavigate, qrScanPending }) => {
               onClick={() => onNavigate('member-register')}
               className="text-orange-500 hover:text-orange-400 font-semibold"
             >
-              Don't have an account? Register here
+              Don&apos;t have an account? Register here
             </button>
           </div>
         )}
