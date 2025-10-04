@@ -1,0 +1,25 @@
+{
+    "name": "gym-app",
+    "version": "1.0.0",
+    "scripts": {
+      "dev": "next dev",
+      "build": "next build", 
+      "start": "next start",
+      "lint": "next lint"
+    },
+    "dependencies": {
+      "next": "14.0.0",
+      "react": "^18",
+      "react-dom": "^18",
+      "mongoose": "^7.0.0",
+      "bcryptjs": "^2.4.3",
+      "jsonwebtoken": "^9.0.0",
+      "express-validator": "^7.0.0",
+      "lucide-react": "^0.263.0"
+    },
+    "devDependencies": {
+      "tailwindcss": "^3.3.0",
+      "autoprefixer": "^10.0.1",
+      "postcss": "^8.4.0"
+    }
+  }
