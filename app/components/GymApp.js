@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react'; // Add useCallback
 import Navigation from './Navigation';
 import LandingPage from './LandingPage';
 import LoginView from './LoginView';
@@ -16,52 +16,8 @@ const GymApp = () => {
   const [loading, setLoading] = useState(false);
   const [qrScanPending, setQrScanPending] = useState(false);
 
-  useEffect(() => {
-    const token = localStorage.getItem('gymToken');
-    const userData = localStorage.getItem('gymUser');
-    if (token && userData) {
-      setUser(JSON.parse(userData));
-      setCurrentView(JSON.parse(userData).role === 'admin' ? 'admin-dashboard' : 'member-dashboard');
-    }
-
-    const params = new URLSearchParams(window.location.search);
-    const scanToken = params.get('scan');
-    if (scanToken) {
-      setQrScanPending(true);
-      if (token && userData) {
-        handleQRScan();
-      } else {
-        setCurrentView('qr-scan-options');
-      }
-    }
-  }, []);
-
-  const showNotification = (message, type = 'success') => {
-    setNotification({ message, type });
-    setTimeout(() => setNotification(null), 4000);
-  };
-
-  const handleLogin = (userData, token) => {
-    setUser(userData);
-    localStorage.setItem('gymToken', token);
-    localStorage.setItem('gymUser', JSON.stringify(userData));
-    
-    if (qrScanPending) {
-      handleQRScan();
-    } else {
-      setCurrentView(userData.role === 'admin' ? 'admin-dashboard' : 'member-dashboard');
-    }
-  };
-
-  const handleLogout = () => {
-    setUser(null);
-    localStorage.removeItem('gymToken');
-    localStorage.removeItem('gymUser');
-    setCurrentView('landing');
-    setQrScanPending(false);
-  };
-
-  const handleQRScan = async () => {
+  // Move handleQRScan inside useCallback
+  const handleQRScan = useCallback(async () => {
     setLoading(true);
     try {
       const token = localStorage.getItem('gymToken');
@@ -96,6 +52,31 @@ const GymApp = () => {
       showNotification('Failed to process check-in/out', 'error');
     }
     setLoading(false);
+  }, [currentView]); // Add currentView as dependency
+
+  const showNotification = (message, type = 'success') => {
+    setNotification({ message, type });
+    setTimeout(() => setNotification(null), 4000);
+  };
+
+  const handleLogin = (userData, token) => {
+    setUser(userData);
+    localStorage.setItem('gymToken', token);
+    localStorage.setItem('gymUser', JSON.stringify(userData));
+    
+    if (qrScanPending) {
+      handleQRScan();
+    } else {
+      setCurrentView(userData.role === 'admin' ? 'admin-dashboard' : 'member-dashboard');
+    }
+  };
+
+  const handleLogout = () => {
+    setUser(null);
+    localStorage.removeItem('gymToken');
+    localStorage.removeItem('gymUser');
+    setCurrentView('landing');
+    setQrScanPending(false);
   };
 
   const handleQRScanWithCredentials = async (credentials) => {
@@ -128,6 +109,26 @@ const GymApp = () => {
     }
     setLoading(false);
   };
+
+  useEffect(() => {
+    const token = localStorage.getItem('gymToken');
+    const userData = localStorage.getItem('gymUser');
+    if (token && userData) {
+      setUser(JSON.parse(userData));
+      setCurrentView(JSON.parse(userData).role === 'admin' ? 'admin-dashboard' : 'member-dashboard');
+    }
+
+    const params = new URLSearchParams(window.location.search);
+    const scanToken = params.get('scan');
+    if (scanToken) {
+      setQrScanPending(true);
+      if (token && userData) {
+        handleQRScan();
+      } else {
+        setCurrentView('qr-scan-options');
+      }
+    }
+  }, [handleQRScan]); // Now handleQRScan is stable
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black">

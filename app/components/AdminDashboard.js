@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react'; // Add useCallback
 import { Users, TrendingUp, Clock } from 'lucide-react';
 
 const AdminDashboard = ({ user }) => {
@@ -13,11 +13,8 @@ const AdminDashboard = ({ user }) => {
   });
   const [activeTab, setActiveTab] = useState('attendance');
 
-  useEffect(() => {
-    fetchData();
-  }, [filters]);
-
-  const fetchData = async () => {
+  // Move fetchData inside useCallback
+  const fetchData = useCallback(async () => {
     setLoading(true);
     try {
       const token = localStorage.getItem('gymToken');
@@ -42,7 +39,11 @@ const AdminDashboard = ({ user }) => {
       console.error('Failed to fetch data:', error);
     }
     setLoading(false);
-  };
+  }, [filters.date, filters.member]); // Add dependencies
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]); // Now fetchData is stable
 
   const markExit = async (attendanceId) => {
     try {
@@ -89,7 +90,7 @@ const AdminDashboard = ({ user }) => {
           </div>
           <div className="bg-gradient-to-br from-green-500/20 to-green-600/20 rounded-2xl p-6 border border-green-500/30">
             <div className="flex items-center justify-between mb-2">
-              <h3 className="text-green-300 font-semibold">Today's Visits</h3>
+              <h3 className="text-green-300 font-semibold">Today&apos;s Visits</h3>
               <TrendingUp className="text-green-400" size={24} />
             </div>
             <p className="text-4xl font-bold text-white">{stats.todayVisits || 0}</p>
